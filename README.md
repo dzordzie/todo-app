@@ -1,1 +1,2 @@
-# todo-app
+# TODO App
+# Simple Todo App
