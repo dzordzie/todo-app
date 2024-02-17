@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css"/>
+    <title>Todo App</title>
+</head>
+<body>
+<h1>TODOS FOR TODAY</h1>
+<form action="/new-todo" method="post">
+    <label for="title">New todo</label>
+    <input type="text" id="title" name="title" required>
+
+    <input type="submit" value="Submit">
+</form>
+
+<table>
+    <thead>
+    <tr>
+        <td>ID</td>
+        <td>ACTION</td>
+        <td>DONE</td>
+        <td>URGENT</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="todo : ${todos}">
+        <td th:text="${todo.id}"></td>
+        <td th:text="${todo.title}"></td>
+        <td th:text="${todo.done}"></td>
+        <td th:text="${todo.urgent}"></td>
+        <td>
+            <form th:action="|${todo.id}/delete|" method="post">
+                <input type="submit" value="DELETE">
+            </form>
+        </td>
+        <td>
+            <form th:action="|${todo.id}/edit|" method="get">
+                <input type="submit" value="EDIT">
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
